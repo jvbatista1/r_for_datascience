@@ -113,5 +113,43 @@ ggplot(penguins, aes(x = body_mass_g)) +
   geom_density()
 
 ### Exercises
-ggplot(penguins, aes(y = species)) +
+ggplot(penguins, aes(x = species)) +
+  geom_bar(color = "red")
+
+ggplot(penguins, aes(x = species)) +
+  geom_bar(fill = "red")
+
+## Visualizing relationships
+### A numerical and a categorical variable
+ggplot(penguins, aes(x = species, y = body_mass_g)) +
+  geom_boxplot()
+
+ggplot(penguins, aes(x = body_mass_g, color = species)) +
+  geom_density(linewidth = 0.75)
+
+ggplot(penguins, aes(x = body_mass_g, color = species, fill = species)) +
+  geom_density(alpha = 0.5)
+
+### Two categorical variables
+ggplot(penguins, aes(x = island, fill = species)) +
   geom_bar()
+
+ggplot(penguins, aes(x = island, fill = species)) +
+  geom_bar(position = "fill")
+
+### Two numerical variables
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point()
+
+### Three or more variables
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species, shape = island))
+
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species, shape = species)) +
+  facet_wrap(~island)
+
+ggplot(penguins, aes(x = island, fill = species)) +
+  geom_bar(position = "fill")
+ggplot(penguins, aes(x = species, fill = island)) +
+  geom_bar(position = "fill")
